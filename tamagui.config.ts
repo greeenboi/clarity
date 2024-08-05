@@ -1,29 +1,38 @@
-import { createAnimations } from '@tamagui/animations-react-native';
-import { createInterFont } from '@tamagui/font-inter';
-import { createMedia } from '@tamagui/react-native-media-driver';
-import { shorthands } from '@tamagui/shorthands';
-import { themes } from '@tamagui/themes';
-import { createTamagui, styled, SizableText, H1, YStack, Button as ButtonTamagui } from 'tamagui';
+import { createAnimations } from "@tamagui/animations-react-native";
+import { config as configBase } from "@tamagui/config/v3";
+import { createInterFont } from "@tamagui/font-inter";
+import * as Icons from "@tamagui/lucide-icons";
+import { createMedia } from "@tamagui/react-native-media-driver";
+import { shorthands } from "@tamagui/shorthands";
+import { themes } from "@tamagui/themes";
+import {
+  createTamagui,
+  styled,
+  SizableText,
+  H1,
+  YStack,
+  Button as ButtonTamagui,
+} from "tamagui";
 
-import { allThemes, tokens } from './utils/themes';
+import { allThemes, tokens } from "./utils/themes";
 
 const animations = createAnimations({
   bouncy: {
     damping: 10,
     mass: 0.9,
     stiffness: 100,
-    type: 'spring',
+    type: "spring",
   },
   lazy: {
     damping: 20,
-    type: 'spring',
+    type: "spring",
     stiffness: 60,
   },
   quick: {
     damping: 20,
     mass: 1.2,
     stiffness: 250,
-    type: 'spring',
+    type: "spring",
   },
 });
 
@@ -38,33 +47,33 @@ export const Container = styled(YStack, {
 
 export const Main = styled(YStack, {
   flex: 1,
-  justifyContent: 'space-between',
+  justifyContent: "space-between",
   maxWidth: 960,
 });
 
 export const Title = styled(H1, {
-  color: '#000',
-  size: '$12',
+  color: "#000",
+  size: "$12",
 });
 
 export const Subtitle = styled(SizableText, {
-  color: '#38434D',
-  size: '$9',
+  color: "#38434D",
+  size: "$9",
 });
 
 export const Button = styled(ButtonTamagui, {
-  backgroundColor: '#1DAC92',
+  backgroundColor: "#1DAC92",
   borderRadius: 12,
   hoverStyle: {
-    backgroundColor: '#4ABDA8',
+    backgroundColor: "#4ABDA8",
   },
   pressStyle: {
-    backgroundColor: '#4ABDA8',
+    backgroundColor: "#4ABDA8",
   },
   maxWidth: 500,
-
+  animation: "bouncy",
   // Shaddows
-  shadowColor: '#000',
+  shadowColor: "#000",
   shadowOffset: {
     height: 2,
     width: 0,
@@ -73,19 +82,20 @@ export const Button = styled(ButtonTamagui, {
   shadowRadius: 3.84,
 
   // Button text
-  color: '#FFFFFF',
-  fontWeight: '600', // Is not passed down to the text. Probably a bug in Tamagui: https://github.com/tamagui/tamagui/issues/1156#issuecomment-1802594930
+  color: "#FFFFFF",
+  fontWeight: "600", // Is not passed down to the text. Probably a bug in Tamagui: https://github.com/tamagui/tamagui/issues/1156#issuecomment-1802594930
   fontSize: 16,
 });
 
 const config = createTamagui({
+  configBase,
   light: {
     color: allThemes.light,
   },
   dark: {
     color: allThemes.dark,
   },
-  defaultFont: 'body',
+  defaultFont: "body",
   animations,
   shouldAddPrefersColorThemes: true,
   themeClassNameOnRoot: true,
@@ -96,6 +106,7 @@ const config = createTamagui({
   },
   themes,
   tokens,
+  icons: Icons,
   media: createMedia({
     xs: { maxWidth: 660 },
     sm: { maxWidth: 800 },
@@ -109,8 +120,8 @@ const config = createTamagui({
     gtLg: { minWidth: 1280 + 1 },
     short: { maxHeight: 820 },
     tall: { minHeight: 820 },
-    hoverNone: { hover: 'none' },
-    pointerCoarse: { pointer: 'coarse' },
+    hoverNone: { hover: "none" },
+    pointerCoarse: { pointer: "coarse" },
   }),
 });
 
@@ -119,7 +130,7 @@ type AppConfig = typeof config;
 // Enable auto-completion of props shorthand (ex: jc="center") for Tamagui templates.
 // Docs: https://tamagui.dev/docs/core/configuration
 
-declare module 'tamagui' {
+declare module "tamagui" {
   interface TamaguiCustomConfig extends AppConfig {}
 }
 
