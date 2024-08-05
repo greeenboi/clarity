@@ -23,6 +23,7 @@ export default function SignIn() {
             width: 334,
             height: 458,
           }}
+          animation="lazy"
         />
         <Container
           width="100%"
