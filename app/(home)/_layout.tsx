@@ -1,13 +1,13 @@
-import { Stack, Redirect } from 'expo-router';
+import { Stack, Redirect } from "expo-router";
 
-import { useAuthContext } from '~/providers/AuthContext';
+import { useAuthContext } from "~/providers/AuthContext";
 
 export default function HomeLayout() {
   const { session } = useAuthContext();
-  console.log('Session:', session);
+  console.log("Session:", session);
   if (!session || !session.user) {
-    console.log('Redirecting to sign-in');
-    return <Redirect href="/sign-in" />;
+    console.log("Redirecting to sign-in");
+    return <Redirect href="/" />;
   }
   return (
     <Stack screenOptions={{ headerShown: false }}>

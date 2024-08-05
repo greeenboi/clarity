@@ -1,9 +1,9 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { H1 } from "tamagui";
 
 import { Container } from "~/components/Container";
 import SignInForm from "~/components/auth/sign-in-form";
+import SignUpForm from "~/components/auth/sign-up-form";
 import pwdScheme from "~/types/forms";
 
 export default function SignIn() {
@@ -28,7 +28,7 @@ export default function SignIn() {
         flexDirection="column"
         justifyContent="space-between"
       >
-        {scheme === "Sign in" ? <SignInForm /> : <H1>{scheme}</H1>}
+        {scheme === "Sign in" ? <SignInForm /> : <SignUpForm />}
       </Container>
     </>
   );
