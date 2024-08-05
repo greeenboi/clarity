@@ -39,7 +39,7 @@ export default function SignIn() {
               color="$white"
               backgroundColor="$color.gray7"
               icon={Google}
-              title="Google Sign In"
+              title="Continue with Google"
               size="$5"
             />
           </Link>
