@@ -1,5 +1,6 @@
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 
+import { Button } from "~/components/Button";
 import { Container } from "~/components/Container";
 import { ScreenContent } from "~/components/ScreenContent";
 import SignOutButton from "~/components/auth/sign-out";
@@ -23,6 +24,14 @@ export default function Details() {
           title={`Showing details for user ${user?.email} `}
         />
         <SignOutButton />
+        <Link href="/goals" asChild>
+          <Button
+            color="$white"
+            backgroundColor="$color.gray7"
+            title="go to goals"
+            size="$5"
+          />
+        </Link>
       </Container>
     </>
   );

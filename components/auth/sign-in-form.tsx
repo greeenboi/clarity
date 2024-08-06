@@ -23,7 +23,7 @@ export default function SignInForm(){
             ToastAndroid.show(error.message, ToastAndroid.SHORT)
         } else {
           ToastAndroid.show('signed in', ToastAndroid.SHORT)
-          router.replace('/details')
+          router.replace('/goals')
           setStatus('submitted')
         }
     }

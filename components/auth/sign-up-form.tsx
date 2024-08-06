@@ -29,7 +29,7 @@ export default function SignUpForm() {
       if (error) ToastAndroid.show(error.message, ToastAndroid.SHORT);
       if (!session) ToastAndroid.show('Check your inbox for Verification', ToastAndroid.SHORT);
       if (session) {
-        router.replace('/details');
+        router.replace('/goals');
         setStatus('submitted');
       }
       setSubmitting(false);

@@ -28,7 +28,7 @@ export default function RootLayout() {
   return (
     <TamaguiProvider config={config}>
       <AuthProvider>
-        <Stack initialRouteName="(home)">
+        <Stack initialRouteName="details">
           <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen
             name="(authentication)"

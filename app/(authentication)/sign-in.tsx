@@ -1,4 +1,4 @@
-import { Link, router, Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { Image, Paragraph, Separator } from "tamagui";
 
 import { Button } from "~/components/Button";
