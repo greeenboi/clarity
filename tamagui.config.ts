@@ -1,7 +1,6 @@
 import { createAnimations } from "@tamagui/animations-react-native";
 import { config as configBase } from "@tamagui/config/v3";
 import { createInterFont } from "@tamagui/font-inter";
-import * as Icons from "@tamagui/lucide-icons";
 import { createMedia } from "@tamagui/react-native-media-driver";
 import { shorthands } from "@tamagui/shorthands";
 import { themes } from "@tamagui/themes";
@@ -11,7 +10,9 @@ import {
   SizableText,
   H1,
   YStack,
+  Input as InputTamagui,
   Button as ButtonTamagui,
+  Form as FormTamagui,
 } from "tamagui";
 
 import { allThemes, tokens } from "./utils/themes";
@@ -87,6 +88,39 @@ export const Button = styled(ButtonTamagui, {
   fontSize: 16,
 });
 
+export const Input = styled(InputTamagui, {
+  backgroundColor: "#334155",
+  borderRadius: 12,
+  maxWidth: 500,
+  height: 56,
+  borderWidth: 0,
+  placeholderTextColor: "#94A3B8",
+
+  pressStyle: {
+    backgroundColor: "#334155",
+  },
+
+  shadowColor: "#000",
+  shadowOffset: {
+    height: 2,
+    width: 0,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+
+  color: "#FFFFFF",
+  fontSize: 14,
+  fontWeight: "400",
+});
+
+export const Form = styled(FormTamagui, {
+  width: "100%",
+  maxWidth: 500,
+  gap: "$0.75",
+  display: "flex",
+  onSubmit: () => {},
+});
+
 const config = createTamagui({
   configBase,
   light: {
@@ -106,7 +140,6 @@ const config = createTamagui({
   },
   themes,
   tokens,
-  icons: Icons,
   media: createMedia({
     xs: { maxWidth: 660 },
     sm: { maxWidth: 800 },

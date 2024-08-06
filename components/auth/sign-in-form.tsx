@@ -1,8 +1,9 @@
 import { router } from "expo-router"
 import { useState } from "react"
 import { ToastAndroid } from "react-native"
-import { Button, Form, Input, Spinner } from "tamagui"
+import { Spinner, Form } from "tamagui"
 
+import { Button, Input } from "~/tamagui.config"
 import { supabase } from "~/utils/supabase"
 
 
@@ -30,6 +31,7 @@ export default function SignInForm(){
     return(
         <Form
             onSubmit={signInWithEmail}
+            style={{display:'flex', gap: 12, flexDirection: 'column'}}
         >
             <Input
                 placeholder="Email"
@@ -50,7 +52,7 @@ export default function SignInForm(){
 
             <Form.Trigger asChild disabled={status !== 'off'}>
                 <Button icon={status === 'submitting' ? () => <Spinner /> : undefined}>
-                Submit
+                    Submit
                 </Button>
             </Form.Trigger>
         </Form>

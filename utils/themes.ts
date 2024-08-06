@@ -1,4 +1,4 @@
-import { createTokens } from 'tamagui';
+import { createTokens } from "tamagui";
 
 const radius = {
   0: 0,
@@ -28,18 +28,18 @@ export const zIndex = {
 
 const size = {
   $0: 0,
-  '$0.25': 2,
-  '$0.5': 4,
-  '$0.75': 8,
+  "$0.25": 2,
+  "$0.5": 4,
+  "$0.75": 8,
   $1: 20,
-  '$1.5': 24,
+  "$1.5": 24,
   $2: 28,
-  '$2.5': 32,
+  "$2.5": 32,
   $3: 36,
-  '$3.5': 40,
+  "$3.5": 40,
   $4: 44,
   $true: 44,
-  '$4.5': 48,
+  "$4.5": 48,
   $5: 52,
   $6: 64,
   $7: 74,
@@ -81,7 +81,7 @@ function sizeToSpace(v: number) {
 const spacesNegative = spaces.slice(1).map(([k, v]) => [`-${k.slice(1)}`, -v]);
 
 type SizeKeysWithNegatives =
-  | Exclude<`-${SizeKeys extends `$${infer Key}` ? Key : SizeKeys}`, '-0'>
+  | Exclude<`-${SizeKeys extends `$${infer Key}` ? Key : SizeKeys}`, "-0">
   | SizeKeys;
 
 const space: {
@@ -93,25 +93,25 @@ const space: {
 
 export const tokens = createTokens({
   color: {
-    white: '#fff',
-    gray1: '#F1F5F9',
-    gray2: '#E2E8F0',
-    gray3: '#CBD5E1',
-    gray4: '#94A3B8',
-    gray5: '#64748B',
-    gray6: '#475569',
-    gray7: '#334155',
-    gray8: '#1E293B',
-    gray9: '#121826',
-    primary: '#1DAC92',
-    primaryHover: '#4ABDA8',
-    secondary: '#03314B',
-    secondaryHover: '#4A5A82',
-    success: '#22C55E',
-    warning: '#FACC15',
-    error: '#F75555',
-    darkgreen: '#228E8E',
-    teal: '#2DD4BF',
+    white: "#fff",
+    gray1: "#F1F5F9",
+    gray2: "#E2E8F0",
+    gray3: "#CBD5E1",
+    gray4: "#94A3B8",
+    gray5: "#64748B",
+    gray6: "#475569",
+    gray7: "#334155",
+    gray8: "#1E293B",
+    gray9: "#121826",
+    primary: "#1DAC92",
+    primaryHover: "#4ABDA8",
+    secondary: "#03314B",
+    secondaryHover: "#4A5A82",
+    success: "#22C55E",
+    warning: "#FACC15",
+    error: "#F75555",
+    darkgreen: "#228E8E",
+    teal: "#2DD4BF",
   },
   // ... see configuration docs for required tokens
   space,

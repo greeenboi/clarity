@@ -2,17 +2,14 @@ import { router } from 'expo-router';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { ToastAndroid } from 'react-native';
-import { Input, Label, Form, Spinner } from 'tamagui';
-import * as yup from 'yup';
+import { Label, Spinner, Form } from 'tamagui';
 
-import { Button } from '~/tamagui.config';
+import { Button, Input } from '~/tamagui.config';
+import { validationSchema } from '~/types/forms';
 import { supabase } from '~/utils/supabase';
 
 
-const validationSchema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-});
+
 
 export default function SignUpForm() {
   const [status, setStatus] = useState<'off' | 'submitting' | 'submitted'>('off')
@@ -62,9 +59,9 @@ export default function SignUpForm() {
         />
         <Label color='$color.error' padding="$1">{formik.touched.password && formik.errors.password ? formik.errors.password : ''}</Label>
         <Form.Trigger asChild disabled={status !== 'off'}>
-                <Button icon={status === 'submitting' ? () => <Spinner /> : undefined}>
-                    Submit
-                </Button>
+          <Button icon={status === 'submitting' ? () => <Spinner /> : undefined}>
+              Submit
+          </Button>
         </Form.Trigger>
     </Form>
   );
