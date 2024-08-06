@@ -23,5 +23,16 @@ const Google = () => {
   )
 }
 
+const Logout = () => {
+  return (
+    <Image
+        source={require('../../assets/logout.svg')}
+        contentFit="cover"
+        transition={1000}
+        style={{ width: 26, height: 26 }}
+      />
+  )
+}
 
-export { Email, Google }
+
+export { Email, Google, Logout }

@@ -4,7 +4,6 @@ import { useAuthContext } from "~/providers/AuthContext";
 
 export default function HomeLayout() {
   const { session } = useAuthContext();
-  console.log("Session:", session);
   if (!session || !session.user) {
     console.log("Redirecting to sign-in");
     return <Redirect href="/" />;

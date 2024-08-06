@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Container } from "~/components/Container";
 import SignInForm from "~/components/auth/sign-in-form";
 import SignUpForm from "~/components/auth/sign-up-form";
-import pwdScheme from "~/types/forms";
+import { pwdScheme } from "~/types/forms";
 
 export default function SignIn() {
   const { schemestate } = useLocalSearchParams<{ schemestate?: string }>();
