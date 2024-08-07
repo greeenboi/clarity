@@ -1,6 +1,6 @@
 module.exports = function (api) {
   api.cache(true);
-  let plugins = [];
+  const plugins = [];
 
   plugins.push([
     "@tamagui/babel-plugin",

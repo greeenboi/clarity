@@ -7,14 +7,14 @@
 // import { ToastAndroid } from 'react-native'
 
 // import { supabase } from '~/utils/supabase'
-  
+
 //   export default function GoogleSignIn () {
 //     const ClientId = process.env.EXPO_GOOGLE_CLIENT_ID
 //     GoogleSignin.configure({
 //       scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 //       webClientId: ClientId,
 //     })
-  
+
 //     return (
 //       <GoogleSigninButton
 //         size={GoogleSigninButton.Size.Wide}

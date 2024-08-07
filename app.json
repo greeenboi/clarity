@@ -6,13 +6,8 @@
     "owner": "greenarcade",
     "version": "1.0.0",
     "scheme": "meditation_app",
-    "platforms": [
-      "android"
-    ],
-    "plugins": [
-      "expo-router",
-      "@react-native-google-signin/google-signin"
-    ],
+    "platforms": ["android"],
+    "plugins": ["expo-router", "@react-native-google-signin/google-signin"],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -25,9 +20,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

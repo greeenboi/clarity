@@ -1,4 +1,4 @@
-import { YStackProps, YStack } from 'tamagui';
+import { YStackProps, YStack } from "tamagui";
 
 interface ContainerProps extends YStackProps {
   children: React.ReactNode;

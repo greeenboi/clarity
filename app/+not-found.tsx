@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
-
 import { YStack } from "tamagui";
+
 import { Container, Main, Subtitle, Title } from "../tamagui.config";
 
 export default function NotFoundScreen() {
