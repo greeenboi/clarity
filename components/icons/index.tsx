@@ -34,4 +34,15 @@ const Logout = () => {
   );
 };
 
-export { Email, Google, Logout };
+const Check = () => {
+  return (
+    <Image
+      source={require("../../assets/check.svg")}
+      contentFit="cover"
+      transition={1000}
+      style={{ width: 26, height: 26 }}
+    />
+  );
+};
+
+export { Email, Google, Logout, Check };

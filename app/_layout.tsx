@@ -1,5 +1,10 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import {
+  SplashScreen,
+  Stack,
+  useGlobalSearchParams,
+  usePathname,
+} from "expo-router";
 import { useEffect } from "react";
 import { TamaguiProvider } from "tamagui";
 
@@ -7,11 +12,10 @@ import config from "../tamagui.config";
 
 import { AuthProvider } from "~/providers/AuthContext";
 
-export const unstable_settings = {
-  initialRouteName: "/j",
-};
-
 export default function RootLayout() {
+  const pathname = usePathname();
+  const params = useGlobalSearchParams();
+
   const [loaded] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
@@ -22,6 +26,9 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
+  useEffect(() => {
+    console.log(pathname, params);
+  }, [pathname, params]);
 
   if (!loaded) return null;
 

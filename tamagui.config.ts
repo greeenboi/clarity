@@ -13,6 +13,7 @@ import {
   Input as InputTamagui,
   Button as ButtonTamagui,
   Form as FormTamagui,
+  Checkbox as CheckboxTamagui,
 } from "tamagui";
 
 import { allThemes, tokens } from "./utils/themes";
@@ -60,6 +61,11 @@ export const Title = styled(H1, {
 export const Subtitle = styled(SizableText, {
   color: "#38434D",
   size: "$9",
+});
+
+export const Checkbox = styled(CheckboxTamagui, {
+  backgroundColor: "#252D41",
+  size: "$4",
 });
 
 export const Button = styled(ButtonTamagui, {
