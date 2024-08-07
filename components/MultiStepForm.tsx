@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { H2 } from "tamagui";
 
 import CheckboxWithLabel from "./CheckboxLabel";
@@ -18,8 +18,16 @@ type Step2Values =
   | "Difficulty Concentrating"
   | "Insomnia";
 
-export default function MultiStepForm() {
+export default function MultiStepForm({
+  setProgress,
+}: {
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [step, setStep] = useState(1);
+  const totalSteps = 4;
+  useEffect(() => {
+    setProgress((step / totalSteps) * 100);
+  }, [step]);
   const [formState, setFormState] = useState<MultiStepFormState>({
     step1: "Relax More",
     step2: [],
@@ -83,7 +91,7 @@ export default function MultiStepForm() {
     <Container
       backgroundColor="$color.gray9"
       flexDirection="column"
-      justifyContent="center"
+      justifyContent="space-between"
       width="100%"
       padding="$1"
       marginVertical="$10"
@@ -212,7 +220,15 @@ export default function MultiStepForm() {
           >
             {Questions.question4}
           </H2>
-          <Container width="100%" padding="$1" marginVertical="$4" gap="$2">
+          <Container
+            width="100%"
+            minHeight="$10"
+            padding="$1"
+            marginVertical="$6"
+            gap="$2"
+            justifyContent="center"
+            alignItems="center"
+          >
             <NumberSlider
               onSelect={(value) => handleStep1Change("step4", value)}
             />
