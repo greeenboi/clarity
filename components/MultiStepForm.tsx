@@ -1,4 +1,6 @@
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
+import { ToastAndroid } from "react-native";
 import { H2 } from "tamagui";
 
 import CheckboxWithLabel from "./CheckboxLabel";
@@ -61,6 +63,8 @@ export default function MultiStepForm({
 
   const handleSubmit = () => {
     console.log("Form Submitted:", formState);
+    ToastAndroid.show("Form Submitted", ToastAndroid.SHORT);
+    router.replace("/details");
   };
 
   const Questions: MultiStepFormProps = {
