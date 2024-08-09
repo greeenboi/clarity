@@ -1,2 +1,4 @@
 
 .tamagui.config.ts
+
+.components/exports/*

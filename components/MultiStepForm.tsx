@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { ToastAndroid } from "react-native";
-import { H2, XStack, ScrollView } from "tamagui";
+import { Dimensions, ToastAndroid } from "react-native";
+import { H2, XStack, ScrollView, Progress, YStack } from "tamagui";
 
 import CheckboxWithLabel from "./CheckboxLabel";
 import { Container } from "./Container";
@@ -21,12 +21,9 @@ type Step2Values =
   | "Difficulty Concentrating"
   | "Insomnia";
 
-export default function MultiStepForm({
-  setProgress,
-}: {
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
-}) {
+export default function MultiStepForm() {
   const [step, setStep] = useState(1);
+  const [progress, setProgress] = useState(0);
   const totalSteps = 5;
   useEffect(() => {
     setProgress((step / totalSteps) * 100);
@@ -94,13 +91,24 @@ export default function MultiStepForm({
 
   return (
     <>
+      <Progress
+        size="$2"
+        value={progress}
+        backgroundColor="$color.gray5"
+        position="absolute"
+        top="$0"
+        alignSelf="center"
+      >
+        <Progress.Indicator animation="lazy" backgroundColor="$color.primary" />
+      </Progress>
       <ScrollView
         backgroundColor="$color.gray9"
         flexDirection="column"
         // justifyContent="space-between"
         scrollEnabled={step === 5}
         width="100%"
-        padding="$1"
+        height="100%"
+        padding="$0"
         marginVertical="$10"
       >
         {step === 1 && (
@@ -253,12 +261,19 @@ export default function MultiStepForm({
         )}
         {step === 5 && (
           <Container
-            width="100%"
+            style={{
+              flex: 1,
+              height: "auto",
+              // width: Dimensions.get("screen").width,
+            }}
             flexDirection="column"
             justifyContent="space-between"
             alignItems="center"
-            padding="$1"
+            padding="$0"
             gap="$4"
+            height="100%"
+            minWidth="$20"
+            minHeight={500}
           >
             <H2
               textAlign="center"
@@ -270,47 +285,50 @@ export default function MultiStepForm({
             >
               {Questions.question5}
             </H2>
-            {/* <ScrollView
-            maxHeight={300}
-            minHeight='100%'
-            width="100%"
-            backgroundColor="$background"
-            padding="$4"
-            borderRadius="$4"
-          > */}
-            <XStack flexWrap="wrap" alignItems="center" justifyContent="center">
+            <XStack
+              flexWrap="wrap"
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
+              minHeight={500}
+              gap="$4"
+              padding="$0"
+              marginVertical="$0"
+              style={{ width: "100%", height: "100%" }}
+            >
               <MusicGallerySelector />
             </XStack>
-            {/* </ScrollView> */}
           </Container>
         )}
       </ScrollView>
-      {step < 5 && step > 1 && (
-        <Button
-          onPress={handleNext}
-          width="100%"
-          minWidth="$14"
-          marginVertical="$1"
-        >
-          Next
-        </Button>
-      )}
-      {step === 5 && (
-        <Button onPress={handleSubmit} marginVertical="$1">
-          Submit
-        </Button>
-      )}
-      {step > 1 && (
-        <Button
-          onPress={handlePrev}
-          width="100%"
-          minWidth="$14"
-          marginVertical="$1"
-          chromeless
-        >
-          Previous
-        </Button>
-      )}
+      <YStack maxHeight="108px" margin="0" padding="0">
+        {step < 5 && step > 1 && (
+          <Button
+            onPress={handleNext}
+            width="100%"
+            minWidth="$14"
+            marginVertical="$1"
+          >
+            Next
+          </Button>
+        )}
+        {step === 5 && (
+          <Button onPress={handleSubmit} marginVertical="$1">
+            Submit
+          </Button>
+        )}
+        {step > 1 && (
+          <Button
+            onPress={handlePrev}
+            width="100%"
+            minWidth="$14"
+            marginVertical="$1"
+            chromeless
+          >
+            Previous
+          </Button>
+        )}
+      </YStack>
     </>
   );
 }

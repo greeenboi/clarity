@@ -21,9 +21,11 @@ export interface MultiStepFormEnums {
   step3: "Yes" | "No" | "A Little";
   step4: number;
   step5: (
+    | "Ocean Waves"
+    | "Nature Sounds"
     | "Binural Beats"
-    | "Sounds of Rain"
     | "Gong Sounds"
+    | "Sounds of Rain"
     | "White Noise"
     | "Green Noise"
     | "Lofi Beats"
