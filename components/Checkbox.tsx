@@ -22,7 +22,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         borderRadius="$2"
       >
         <TCheckbox {...tButtonProps} ref={ref}>
-          <TCheckbox.Indicator>{checkbox}</TCheckbox.Indicator>
+          <TCheckbox.Indicator animation="quick">
+            {checkbox}
+          </TCheckbox.Indicator>
         </TCheckbox>
         <Label size={Labelsize} htmlFor={labelid}>
           {label}

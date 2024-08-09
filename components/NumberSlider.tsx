@@ -1,6 +1,12 @@
 import React, { memo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ListRenderItemInfo } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ListRenderItemInfo,
+  ToastAndroid,
+} from "react-native";
 import SmoothPicker from "react-native-smooth-picker";
+import { Text } from "tamagui";
 
 const opacities: { [key: number]: number } = {
   0: 1,
@@ -36,11 +42,17 @@ const Item = memo(
           {
             opacity,
             borderColor: selected ? "#1DAC92" : "transparent",
-            width: vertical ? 190 : "auto",
+            width: vertical ? 120 : "auto",
+            height: 180,
           },
         ]}
       >
-        <Text style={{ fontSize, color: "#1DAC92" }}>{name}</Text>
+        <Text
+          wordWrap="normal"
+          style={{ fontSize, color: "#1DAC92", flexWrap: "nowrap" }}
+        >
+          {name}
+        </Text>
       </View>
     );
   },
@@ -53,14 +65,15 @@ const ItemToRender = (
 ) => {
   const selected = index === indexSelected;
   const gap = Math.abs(index - indexSelected);
+  // console.log("gap", gap);
 
   let opacity = opacities[gap];
   if (gap > 3) {
-    opacity = opacities[3];
+    opacity = opacities[4];
   }
-  let fontSize = sizeText[gap];
+  let fontSize = sizeText[gap] + 10;
   if (gap > 1) {
-    fontSize = sizeText[1];
+    fontSize = sizeText[2];
   }
 
   return (
@@ -82,27 +95,40 @@ const NumberSlider = ({ onSelect }: { onSelect: (value: number) => void }) => {
     if (refPicker.current) {
       // @ts-ignore
       refPicker.current.scrollToIndex({
-        animated: true,
+        animated: !isMomentumScrolling,
         index,
-        viewOffset: -40,
+        viewOffset: 0,
       });
     }
   }
 
-  const [selected, setSelected] = useState(4);
+  const [isMomentumScrolling, setIsMomentumScrolling] = useState(false);
+  const [selected, setSelected] = useState(1);
   const refPicker = useRef<SmoothPicker>(null);
 
   return (
     <SmoothPicker
       initialScrollToIndex={selected}
-      onScrollToIndexFailed={() => {}}
+      onScrollToIndexFailed={() =>
+        ToastAndroid.show("Failed to scroll", ToastAndroid.SHORT)
+      }
       keyExtractor={(_, index) => index.toString()}
-      showsVerticalScrollIndicator={false}
       data={numbers}
       scrollAnimation
+      selectOnPress
+      alwaysBounceHorizontal
+      horizontal
+      hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+      onMomentumScrollBegin={() => setIsMomentumScrolling(true)}
+      onMomentumScrollEnd={() => setIsMomentumScrolling(false)}
+      onEndReached={() =>
+        ToastAndroid.show("That's All Folks!", ToastAndroid.SHORT)
+      }
+      onEndReachedThreshold={1.2}
+      activeOpacityButton={1}
       onSelected={({ item, index }) => handleChange(index)}
       renderItem={(option) => ItemToRender(option, selected, true)}
-      magnet
+      // magnet
     />
   );
 };
