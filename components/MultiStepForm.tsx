@@ -13,13 +13,9 @@ import {
   MultiStepFormEnums,
   MultiStepFormProps,
   MultiStepFormState,
+  Step2Values,
+  Step5Values,
 } from "~/types/forms";
-
-type Step2Values =
-  | "Restless"
-  | "Anxiety"
-  | "Difficulty Concentrating"
-  | "Insomnia";
 
 export default function MultiStepForm() {
   const [step, setStep] = useState(1);
@@ -56,6 +52,17 @@ export default function MultiStepForm() {
         : prev.step2.filter((item) => item !== value);
       console.log("New Step 2:", newStep2);
       return { ...prev, step2: newStep2 };
+    });
+  };
+
+  const handleMusicGalleryChange = (value: Step5Values, checked: boolean) => {
+    console.log("Music Change:", value, checked);
+    setFormState((prev) => {
+      const newStep5 = checked
+        ? [...prev.step5, value]
+        : prev.step5.filter((item) => item !== value);
+      console.log("New Step 5:", newStep5);
+      return { ...prev, step5: newStep5 };
     });
   };
 
@@ -296,7 +303,9 @@ export default function MultiStepForm() {
               marginVertical="$0"
               style={{ width: "100%", height: "100%" }}
             >
-              <MusicGallerySelector />
+              <MusicGallerySelector
+                handleMusicGalleryChange={handleMusicGalleryChange}
+              />
             </XStack>
           </Container>
         )}

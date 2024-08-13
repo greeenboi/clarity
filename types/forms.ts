@@ -47,3 +47,23 @@ export interface MultiStepFormProps {
 export type MultiStepFormState = {
   [key in keyof MultiStepFormEnums]: MultiStepFormEnums[key];
 };
+
+export type Step2Values =
+  | "Restless"
+  | "Anxiety"
+  | "Difficulty Concentrating"
+  | "Insomnia";
+
+export type Step5Values =
+  | "Ocean Waves"
+  | "Nature Sounds"
+  | "Binural Beats"
+  | "Gong Sounds"
+  | "Sounds of Rain"
+  | "White Noise"
+  | "Green Noise"
+  | "Lofi Beats"
+  | "Ambient Noise"
+  | "ChillWave"
+  | "CampFire Crackles"
+  | "Gregorian Chants";

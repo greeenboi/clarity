@@ -1,5 +1,6 @@
 import { MasonryFlashList } from "@shopify/flash-list";
 import { BlurView } from "expo-blur";
+import { useState } from "react";
 import { FlexAlignType } from "react-native";
 import { Card, CardProps, Image, Text } from "tamagui";
 
@@ -18,16 +19,20 @@ import {
   WhiteNoise,
 } from "./exports/ImageUriExports";
 
-import { MultiStepFormEnums } from "~/types/forms";
+import { MultiStepFormEnums, Step5Values } from "~/types/forms";
 
 export function MusicCard({
   title,
   alignSelf,
+  onPress,
+  selected,
   ImageSource,
   ...props
 }: {
   title: string;
   alignSelf: "auto" | FlexAlignType;
+  onPress: () => void;
+  selected: boolean;
   ImageSource: string;
   props?: CardProps;
 }) {
@@ -40,10 +45,13 @@ export function MusicCard({
       margin="$1.5"
       animation="lazy"
       pressStyle={{ scale: 0.875 }}
-      onPress={() => {}}
+      onPress={onPress}
       onLongPress={() => {}}
-      borderWidth={0}
-      borderRadius="$4"
+      radiused
+      style={{
+        boxShadow: selected ? "inset 0 0 0 4px $color.primaryHover" : "none",
+        filter: selected ? "grayscale(100%)" : "none",
+      }}
       {...props}
     >
       <BlurView
@@ -121,7 +129,26 @@ const MusicData = titles.map((title, index) => ({
   image: images[index],
 }));
 
-export default function MusicGallerySelector() {
+export default function MusicGallerySelector({
+  handleMusicGalleryChange,
+}: {
+  handleMusicGalleryChange: (value: Step5Values, checked: boolean) => void;
+}) {
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
+
+  const handlePress = (title: Step5Values) => {
+    setSelectedItems((prevSelectedItems) => {
+      const newSelectedItems = new Set(prevSelectedItems);
+      if (newSelectedItems.has(title)) {
+        newSelectedItems.delete(title);
+        handleMusicGalleryChange(title, false);
+      } else {
+        newSelectedItems.add(title);
+        handleMusicGalleryChange(title, true);
+      }
+      return newSelectedItems;
+    });
+  };
   return (
     <MasonryFlashList
       data={MusicData}
@@ -129,11 +156,14 @@ export default function MusicGallerySelector() {
       focusable
       pagingEnabled
       showsVerticalScrollIndicator={false}
+      style={{ height: "100%" }}
       renderItem={({ item }) => (
         <MusicCard
           alignSelf="center"
           ImageSource={item.image}
           title={item.title}
+          onPress={() => handlePress(item.title)}
+          selected={selectedItems.has(item.title)}
           props={{
             width: "160",
             height: "101",
