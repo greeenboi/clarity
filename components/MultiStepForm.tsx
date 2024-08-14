@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Dimensions, ToastAndroid } from "react-native";
-import { H2, XStack, ScrollView, Progress, YStack } from "tamagui";
+import { ToastAndroid } from "react-native";
+import { H2, ScrollView, Progress, YStack } from "tamagui";
 
 import CheckboxWithLabel from "./CheckboxLabel";
 import { Container } from "./Container";
@@ -111,12 +111,12 @@ export default function MultiStepForm() {
       <ScrollView
         backgroundColor="$color.gray9"
         flexDirection="column"
-        // justifyContent="space-between"
         scrollEnabled={step === 5}
         width="100%"
         height="100%"
         padding="$0"
         marginVertical="$10"
+        flexGrow={1}
       >
         {step === 1 && (
           <Container
@@ -292,21 +292,9 @@ export default function MultiStepForm() {
             >
               {Questions.question5}
             </H2>
-            <XStack
-              flexWrap="wrap"
-              alignItems="center"
-              justifyContent="center"
-              width="100%"
-              minHeight={500}
-              gap="$4"
-              padding="$0"
-              marginVertical="$0"
-              style={{ width: "100%", height: "100%" }}
-            >
-              <MusicGallerySelector
-                handleMusicGalleryChange={handleMusicGalleryChange}
-              />
-            </XStack>
+            <MusicGallerySelector
+              handleMusicGalleryChange={handleMusicGalleryChange}
+            />
           </Container>
         )}
       </ScrollView>

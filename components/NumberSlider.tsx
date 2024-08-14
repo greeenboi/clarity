@@ -97,7 +97,7 @@ const NumberSlider = ({ onSelect }: { onSelect: (value: number) => void }) => {
       refPicker.current.scrollToIndex({
         animated: !isMomentumScrolling,
         index,
-        viewOffset: 0,
+        viewOffset: -20,
       });
     }
   }
@@ -128,7 +128,7 @@ const NumberSlider = ({ onSelect }: { onSelect: (value: number) => void }) => {
       activeOpacityButton={1}
       onSelected={({ item, index }) => handleChange(index)}
       renderItem={(option) => ItemToRender(option, selected, true)}
-      // magnet
+      magnet
     />
   );
 };

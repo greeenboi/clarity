@@ -45,4 +45,26 @@ const Check = () => {
   );
 };
 
-export { Email, Google, Logout, Check };
+const Play = () => {
+  return (
+    <Image
+      source={require("../../assets/play.svg")}
+      contentFit="cover"
+      transition={1000}
+      style={{ width: 26, height: 26 }}
+    />
+  );
+};
+
+const Pause = () => {
+  return (
+    <Image
+      source={require("../../assets/pause.svg")}
+      contentFit="cover"
+      transition={1000}
+      style={{ width: 26, height: 26 }}
+    />
+  );
+};
+
+export { Email, Google, Logout, Check, Play, Pause };

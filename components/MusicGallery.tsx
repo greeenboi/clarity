@@ -1,8 +1,7 @@
-import { MasonryFlashList } from "@shopify/flash-list";
 import { BlurView } from "expo-blur";
 import { useState } from "react";
 import { FlexAlignType } from "react-native";
-import { Card, CardProps, Image, Text } from "tamagui";
+import { Card, CardProps, Image, Stack, Text } from "tamagui";
 
 import {
   AmbientNoise,
@@ -20,6 +19,7 @@ import {
 } from "./exports/ImageUriExports";
 
 import { MultiStepFormEnums, Step5Values } from "~/types/forms";
+import { Play } from "./icons";
 
 export function MusicCard({
   title,
@@ -36,33 +36,42 @@ export function MusicCard({
   ImageSource: string;
   props?: CardProps;
 }) {
+  // console.log("title is selected: ", title, selected);
+
+  const handleLongPress = () => {
+    console.log("Long Pressed");
+
+  };
+
   return (
     <Card
       elevate
       size="$1"
-      minHeight={170}
+      height={170}
       minWidth={160}
+      width={250}
       margin="$1.5"
-      animation="lazy"
+      animation="quick"
       pressStyle={{ scale: 0.875 }}
       onPress={onPress}
-      onLongPress={() => {}}
-      radiused
-      style={{
-        boxShadow: selected ? "inset 0 0 0 4px $color.primaryHover" : "none",
-        filter: selected ? "grayscale(100%)" : "none",
-      }}
+      scale={selected ? 0.95 : 1}
+      // onLongPress={handleLongPress}
+      borderRadius={16}
+      borderWidth={selected ? 4 : 0}
+      borderColor="$color.primaryHover"
       {...props}
     >
       <BlurView
         intensity={80}
         style={{
           position: "absolute",
-          bottom: 0,
+          bottom: 10,
           left: 0,
           right: 0,
           height: 36,
           zIndex: 100,
+          borderWidth: 0,
+          borderRadius: 12,
         }}
       >
         <Card.Footer
@@ -71,19 +80,20 @@ export function MusicCard({
           display="flex"
           flexDirection="row"
           alignItems="center"
-          justifyContent="flex-start"
+          justifyContent="space-between"
           padding={2}
         >
           <Text color="#fff">{title}</Text>
+          <Play />
         </Card.Footer>
       </BlurView>
-      <Card.Background>
+      <Card.Background borderRadius={12}>
         <Image
           resizeMode="cover"
           alignSelf={alignSelf}
           source={{
-            width: 400,
-            height: 400,
+            width: 250,
+            height: 170,
             uri: ImageSource,
           }}
         />
@@ -150,28 +160,23 @@ export default function MusicGallerySelector({
     });
   };
   return (
-    <MasonryFlashList
-      data={MusicData}
-      numColumns={2}
-      focusable
-      pagingEnabled
-      showsVerticalScrollIndicator={false}
-      style={{ height: "100%" }}
-      renderItem={({ item }) => (
+    <Stack
+      display="flex"
+      flexDirection="row"
+      flexWrap="wrap"
+      justifyContent="center"
+      gap={2}
+    >
+      {MusicData.map((item) => (
         <MusicCard
+          key={item.title}
           alignSelf="center"
           ImageSource={item.image}
           title={item.title}
           onPress={() => handlePress(item.title)}
           selected={selectedItems.has(item.title)}
-          props={{
-            width: "160",
-            height: "101",
-            margin: "$1",
-          }}
         />
-      )}
-      estimatedItemSize={60}
-    />
+      ))}
+    </Stack>
   );
 }

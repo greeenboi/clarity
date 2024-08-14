@@ -37,6 +37,7 @@ export default function RootLayout() {
       <AuthProvider>
         <Stack initialRouteName="details">
           <Stack.Screen name="(home)" options={{ headerShown: false }} />
+          <Stack.Screen name="(functions)" options={{ headerShown: false }} />
           <Stack.Screen
             name="(authentication)"
             options={{ headerShown: false }}

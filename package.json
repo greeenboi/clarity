@@ -5,7 +5,7 @@
   "scripts": {
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "start": "expo start",
+    "start": "expo start --go",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "web": "expo start --web"
@@ -44,7 +44,8 @@
     "react-native-smooth-picker": "^1.1.5",
     "react-native-web": "~0.19.10",
     "tamagui": "1.74.8",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "expo-av": "~14.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
