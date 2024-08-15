@@ -1,3 +1,4 @@
+import { Audio } from "expo-av";
 import { BlurView } from "expo-blur";
 import { useState } from "react";
 import { FlexAlignType } from "react-native";
@@ -19,7 +20,7 @@ import {
 } from "./exports/ImageUriExports";
 
 import { MultiStepFormEnums, Step5Values } from "~/types/forms";
-import { Play } from "./icons";
+import PlaySound from "./play-sound";
 
 export function MusicCard({
   title,
@@ -37,10 +38,11 @@ export function MusicCard({
   props?: CardProps;
 }) {
   // console.log("title is selected: ", title, selected);
+  const [sound, setSound] = useState<Audio.Sound | undefined>();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleLongPress = () => {
     console.log("Long Pressed");
-
   };
 
   return (
@@ -55,7 +57,7 @@ export function MusicCard({
       pressStyle={{ scale: 0.875 }}
       onPress={onPress}
       scale={selected ? 0.95 : 1}
-      // onLongPress={handleLongPress}
+      onLongPress={handleLongPress}
       borderRadius={16}
       borderWidth={selected ? 4 : 0}
       borderColor="$color.primaryHover"
@@ -84,7 +86,24 @@ export function MusicCard({
           padding={2}
         >
           <Text color="#fff">{title}</Text>
-          <Play />
+          <PlaySound
+            uri="https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
+            isPlaying={isPlaying}
+            sound={sound}
+            setSound={setSound}
+            isLooping={false}
+            shouldPlay
+            volume={1.0}
+            rate={1.0}
+            positionMillis={0}
+            progressUpdateIntervalMillis={500}
+            onPlaybackStatusUpdate={(status) => {
+              if (status.didJustFinish) {
+                setIsPlaying(false);
+              }
+            }}
+            isMuted={false}
+          />
         </Card.Footer>
       </BlurView>
       <Card.Background borderRadius={12}>
